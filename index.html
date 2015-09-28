@@ -1,0 +1,57 @@
+<html>
+<head>
+  <title>FoodTracksSF</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+    <!-- Router -->
+    <script src="javascript/services/uiRouter.js"></script>
+</head>
+
+  <body ng-app='trackApp'>
+
+    <h1 class='text-center'>Food tracks in San-Francisco</h1>
+
+
+    <div class="container">
+      <div class="row ">
+
+        <!-- stocks view-->
+        <div class = "col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-6 col-lg-6 col-ld-offset-3" ui-view='search'>
+          search not rendered
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class = "">
+
+          <!-- results view-->
+          <div ui-view>
+            results not rendered
+          </div>
+        </div>
+      </div>
+
+        
+
+    </div>
+
+  <!-- modules -->
+  <script src="javascript/app.js"></script>
+
+  <!-- directives -->
+
+
+  <!-- services -->
+  <script src="javascript/services/trackData.js"></script>
+  <script src="javascript/services/geoData.js"></script>
+  <!-- controllers -->
+  <script src="javascript/controllers/trackCtrl.js"></script>
+
+
+  </body>
+</html>

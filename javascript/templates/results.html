@@ -1,0 +1,41 @@
+Geolocation
+<!-- 
+{{geoData.data.query}}
+{{geoData.data.features.length}} -->
+<h4>Tracks are showed for address:</h4>
+<table class="table">
+  <tr>
+    <th>Address</th>
+    <th>Lon</th>
+    <th>Lat</th>
+
+
+  </tr>
+  <tr >
+    <td>{{geoData.data.features[0].place_name}}</td>
+    <td>{{geoData.data.features[0].center[0]}}</td>
+    <td>{{geoData.data.features[0].center[1]}}</td>
+
+  </tr>
+</table>
+
+<h4>Tracks in this area</h4>
+{{trackData.data.length}}
+<table class="table">
+  <tr>
+    <th>What</th>
+    <th>Where</th>
+    <th>Type of Food</th>
+    <th>Schedule</th>
+
+  </tr>
+
+  <tr ng-repeat = "info in trackData.data track by $index">
+    <td>{{info.applicant}}</td>
+    <td>{{info.address}}</td>
+    <td>{{info.fooditems}}</td>
+    <td>{{info.dayshours}}</td>
+  </tr>
+</table>
+
+<!-- Track Data here {{trackData}} -->
