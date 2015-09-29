@@ -1,18 +1,23 @@
 truckApp.factory('geoDataService',  ['$http', 'truckDataService', function($http, truckDataService){
   console.log("geoData service run");
+
   var obj={};
+
+  obj.geoip = {
+    longitude: -122.41,
+    latitude: 37.78
+  },
 
   obj.response = {
     data: {features: [{place_name: "560 Mission St.",
                       center: ["37.788865","-122.399359"]
                     }]
                   },
-    center: {longitude: 37.78,
-              latitude: -122.41},
+    center: {longitude: obj.geoip.longitude,
+              latitude: obj.geoip.latitude},
     map: {
-      center: new L.LatLng(37.78, -122.41),
+      center: new L.LatLng(obj.geoip.latitude,obj.geoip.longitude),
       zoom: 15,
-      // maxBounds: bounds,
       maxZoom: 16,
       minZoom: 14
     },
@@ -21,23 +26,6 @@ truckApp.factory('geoDataService',  ['$http', 'truckDataService', function($http
 
   };
 
-  // obj.GetCoords() {
-  //      $http.get('http://ipinfo.io/json').
-  //        success(function(data) {
-  //          var coords = data.loc.split(",")
-
-  //          obj.response.center.longitude = Number(coords[0]);
-  //          obj.response.center.latitude = Number(coords[1]);
-  //          console.log(coords)
-  //          if ( obj.response.center.longitude > 39 || 
-  //               obj.response.center.longitude < 37 || 
-  //               obj.response.center.latitude > -121 || 
-  //               obj.response.center.latitude < -124 ) {
-  //               obj.response.center.longitude = 37.78;
-  //               obj.response.center.latitude = -122.41;
-  //           }
-  //      });
-  // };
   
 
 
@@ -53,12 +41,13 @@ truckApp.factory('geoDataService',  ['$http', 'truckDataService', function($http
 });
 
   obj.truckIcon = new obj.mainIcon({iconUrl: 'images/foodtruck-icon-web.png'});
-    // redIcon = new LeafIcon({iconUrl: 'leaf-red.png'}),
-    // orangeIcon = new LeafIcon({iconUrl: 'leaf-orange.png'});
 
-// L.marker([51.5, -0.09], {icon: truckIcon}).addTo(map).bindPopup("I am a green leaf.");
-// L.marker([51.495, -0.083], {icon: redIcon}).addTo(map).bindPopup("I am a red leaf.");
-// L.marker([51.49, -0.1], {icon: orangeIcon}).addTo(map).bindPopup("I am an orange leaf.");
+  obj.userIcon = new obj.mainIcon({iconUrl: 'images/user.png'});
+  
+  obj.addCenter = function(latlng){
+    var new_marker = L.marker([latlng.lat, latlng.lng], {icon: obj.userIcon}).bindPopup('<h4> You are here </h4>').addTo(obj.response.markers);
+  };
+
 
 
 
@@ -79,7 +68,9 @@ truckApp.factory('geoDataService',  ['$http', 'truckDataService', function($http
           fillColor: '#000',
           fillOpacity: 0.2
         }).addTo(obj.response.cicles);
-   
+    
+      
+      obj.addCenter(latlng);
 
       //Adding new markers to array
       angular.forEach(truckDataService.response.data, function(truck){
