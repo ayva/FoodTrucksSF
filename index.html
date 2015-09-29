@@ -17,11 +17,9 @@
 
   <body ng-app='truckApp'>
 
-   
-
-
+    <!-- search view-->
     <div class = "col-xs-offset-3 col-xs-5 col-sm-offset-3 col-sm-5 col-md-offset-3 col-md-5 col-lg-5 col-ld-offset-3"  ui-view='search'></div>
-
+    <!-- map view-->
     <div ui-view="map"></div>
 
     
@@ -40,15 +38,11 @@
 
   <!-- modules -->
   <script src="javascript/app.js"></script>
-
-  <!-- directives -->
   
 
   <!-- services -->
   <script src="javascript/services/truckData.js"></script>
   <script src="javascript/services/geoData.js"></script>
-  <script src="javascript/services/mapData.js"></script>
-
 
   <!-- controllers -->
   <script src="javascript/controllers/truckCtrl.js"></script>

@@ -24,8 +24,6 @@ truckApp.config(function(
                      return $http.get('http://ipinfo.io/json').
                        success( function(data) {
                          return data;
-                          
-                          
                         });
                        
             }

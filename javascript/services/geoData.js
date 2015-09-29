@@ -69,7 +69,7 @@ truckApp.factory('geoDataService',  ['$http', 'truckDataService', function($http
           fillOpacity: 0.2
         }).addTo(obj.response.cicles);
     
-      
+
       obj.addCenter(latlng);
 
       //Adding new markers to array
@@ -79,7 +79,7 @@ truckApp.factory('geoDataService',  ['$http', 'truckDataService', function($http
 
       });
   };
-
+  //Search by address
   obj.getGeoData = function(address){
     $http({
             method: 'GET',
@@ -92,12 +92,8 @@ truckApp.factory('geoDataService',  ['$http', 'truckDataService', function($http
               obj.response.center.longitude = Number(obj.response.data.features[0].center[0]);
               obj.response.center.latitude = Number(obj.response.data.features[0].center[1]);
 
-
-
               //Getting trucks for provided coordinates
               obj.getTrucks();
-
-
 
         }, function errorCallback(response) {
           console.log("No geo info returned");
@@ -105,7 +101,7 @@ truckApp.factory('geoDataService',  ['$http', 'truckDataService', function($http
         });
   };
 
-
+  //Search by coords
   obj.getTrucks = function(){
 
 

@@ -10,36 +10,16 @@ truckApp.factory('mapDataService',  ['$http', 'truckDataService', 'geoDataServic
               latitude: -122.41}
   };
 
-  //markers = new Array();
-  // var map, markers;
-
-
-  // var popup = L.popup();
-
 
   obj.response.map = L.map('map', {
       center: new L.LatLng(geoDataService.response.center.longitude, geoDataService.response.center.latitude),
       zoom: 13,
-      // maxBounds: bounds,
       maxZoom: 30,
       minZoom: 0
   });
 
   obj.response.markers = new L.LayerGroup().addTo(map);
 
-  // obj.addMarkersToMap = function(markers){
-  //   obj.response.map.center = new L.LatLng(geoDataService.response.center.latitude, geoDataService.response.center.longitude);
-  //   angular.forEach(markers, function(marker){
-  //         marker.addTo(obj.map);
-  //         var marker = L.marker([userLatitude, userLongitude]).addTo(markers);
-  //       });
-  // };
-
-  // obj.removeMarkersFromMap = function(markers){
-  //   angular.forEach(markers, function(marker){
-  //     marker.removeFrom(obj.map);
-  //   });
-  // };
 
   obj.updateMarkers = function(){
       console.log("Update markers was run");
