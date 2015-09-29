@@ -13,14 +13,52 @@ truckApp.factory('geoDataService',  ['$http', 'truckDataService', function($http
       center: new L.LatLng(37.78, -122.41),
       zoom: 15,
       // maxBounds: bounds,
-      maxZoom: 30,
-      minZoom: 5
+      maxZoom: 16,
+      minZoom: 14
     },
     markers: {},
-    cicles: {},
-    emap: {}
+    cicles: {}
 
   };
+
+  // obj.GetCoords() {
+  //      $http.get('http://ipinfo.io/json').
+  //        success(function(data) {
+  //          var coords = data.loc.split(",")
+
+  //          obj.response.center.longitude = Number(coords[0]);
+  //          obj.response.center.latitude = Number(coords[1]);
+  //          console.log(coords)
+  //          if ( obj.response.center.longitude > 39 || 
+  //               obj.response.center.longitude < 37 || 
+  //               obj.response.center.latitude > -121 || 
+  //               obj.response.center.latitude < -124 ) {
+  //               obj.response.center.longitude = 37.78;
+  //               obj.response.center.latitude = -122.41;
+  //           }
+  //      });
+  // };
+  
+
+
+  obj.mainIcon = L.Icon.extend({
+    options: {
+        //shadowUrl: 'leaf-shadow.png',
+        iconSize:     [40, 40],
+        //shadowSize:   [50, 64],
+        iconAnchor:   [20, 20],
+        //shadowAnchor: [4, 62],
+        popupAnchor:  [0, -15]
+    }
+});
+
+  obj.truckIcon = new obj.mainIcon({iconUrl: 'images/foodtruck-icon-web.png'});
+    // redIcon = new LeafIcon({iconUrl: 'leaf-red.png'}),
+    // orangeIcon = new LeafIcon({iconUrl: 'leaf-orange.png'});
+
+// L.marker([51.5, -0.09], {icon: truckIcon}).addTo(map).bindPopup("I am a green leaf.");
+// L.marker([51.495, -0.083], {icon: redIcon}).addTo(map).bindPopup("I am a red leaf.");
+// L.marker([51.49, -0.1], {icon: orangeIcon}).addTo(map).bindPopup("I am an orange leaf.");
 
 
 
@@ -32,12 +70,12 @@ truckApp.factory('geoDataService',  ['$http', 'truckDataService', function($http
       
       //Moving map center and adding cicle
       var latlng = {lat: obj.response.center.latitude,
-                    lng: obj.response.center.longitude}  
+                    lng: obj.response.center.longitude}; 
 
       obj.response.map.panTo(latlng);
 
         L.circle(latlng, 400, {
-          color: 'green',
+          color: '#2E73B4',
           fillColor: '#000',
           fillOpacity: 0.2
         }).addTo(obj.response.cicles);
@@ -45,7 +83,7 @@ truckApp.factory('geoDataService',  ['$http', 'truckDataService', function($http
 
       //Adding new markers to array
       angular.forEach(truckDataService.response.data, function(truck){
-          var new_marker = L.marker([truck.latitude, truck.longitude]).bindPopup('<p>'+truck.applicant+'</p><p>'+truck.dayshours+'<br />'+truck.fooditems+'</p>').addTo(obj.response.markers);
+          var new_marker = L.marker([truck.latitude, truck.longitude], {icon: obj.truckIcon}).bindPopup('<h4>'+truck.applicant+'</h4><p>'+truck.dayshours+'<br />'+truck.fooditems+'</p>').addTo(obj.response.markers);
           console.log("New marker added")
 
       });
