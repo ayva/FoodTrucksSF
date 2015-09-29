@@ -22,8 +22,8 @@ truckApp.controller('mapCtrl',  [ '$scope', '$http', 'coords',
   }
 
   
-  geoDataService.response.geoip.longitude = $scope.coords.longitude;
-  geoDataService.response.geoip.latitude = $scope.coords.latitude;
+  geoDataService.geoip.longitude = $scope.coords.longitude;
+  geoDataService.geoip.latitude = $scope.coords.latitude;
 
   $scope.map = L.map('map', geoDataService.response.map);
   geoDataService.response.map = $scope.map;
