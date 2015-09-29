@@ -16,13 +16,13 @@ console.log("coords",coords)
  //In case location was not defined or was outside of SF 
  if ( $scope.coords.longitude > 39 ||
       $scope.coords.longitude < 37 ||
-      $scope.coords.latitude > -121 ||
-      $scope.coords.latitude < -124 ) {
+      $scope.coords.latitude < -121 ||
+      $scope.coords.latitude > -124 ) {
       $scope.coords.longitude = 37.78;
       $scope.coords.latitude = -122.41;
   }
 
-  
+  37.7898,-122.3942
   geoDataService.response.geoip = $scope.coords;
 
   $scope.map = L.map('map', geoDataService.response.map);
@@ -67,7 +67,7 @@ console.log("coords",coords)
 
   //Food types filter
 
-  
+
 
 
 }]);
