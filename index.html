@@ -1,11 +1,14 @@
 <html>
 <head>
   <title>FoodTracksSF</title>
+    <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     
+
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="leaflet.js"></script>
 
     <!-- Router -->
     <script src="javascript/services/uiRouter.js"></script>
@@ -14,6 +17,8 @@
   <body ng-app='trackApp'>
 
     <h1 class='text-center'>Food tracks in San-Francisco</h1>
+
+
 
 
     <div class="container">
@@ -25,6 +30,12 @@
         </div>
 
       </div>
+  
+
+<!--       <div>
+        <map id="map" style="width:100%; height:180; "></map>
+      </div> -->
+      <div ui-view="map">Map was not rendered</div>
 
       <div class="row">
         <div class = "">
@@ -44,14 +55,15 @@
   <script src="javascript/app.js"></script>
 
   <!-- directives -->
-
+  <script src="javascript/directives/map.js"></script>
 
   <!-- services -->
   <script src="javascript/services/trackData.js"></script>
   <script src="javascript/services/geoData.js"></script>
   <!-- controllers -->
   <script src="javascript/controllers/trackCtrl.js"></script>
+  <script src="javascript/controllers/mapCtrl.js"></script>
 
-
+   
   </body>
 </html>

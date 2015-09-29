@@ -3,13 +3,13 @@ trackApp.factory('trackDataService', ['$http', function($http){
   var obj={};
 
   obj.response = {
-    data: "Default data"
+    data: {}
   };
 
   obj.getMission = function(){
     return $http({
         method: 'GET',
-        url: 'https://data.sfgov.org/resource/rqzj-sfat.json?$where=within_circle(location,%2037.78,%20-122.41,%201000)',
+        url: 'https://data.sfgov.org/resource/rqzj-sfat.json?$where=within_circle(location,%2037.78,%20-122.41,%20200)',
         }).then(function successCallback(response) {
         
         //Adding default data

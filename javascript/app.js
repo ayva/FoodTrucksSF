@@ -16,6 +16,10 @@ trackApp.config(function(
         templateUrl: 'javascript/templates/search.html',
         controller: 'trackCtrl',
         },
+        'map': {
+          templateUrl: 'javascript/templates/map.html',
+          controller: 'mapCtrl',
+        },
         '': {
           templateUrl: 'javascript/templates/results.html',
           controller: 'trackCtrl',
@@ -33,17 +37,3 @@ trackApp.run(function($rootScope){
 });
 
 
-var fivesBounce = function(n, arr=[], sign=-1){
-  if (array[-1]==start) retutn;
-
-  array=arr
-  array.push(n)
-  n = n + sign*5
-  if (n<0){ sign = +1 }
-
-  
-
-  if (arr[-1] == n){return arr}
-    else{function(n, array, sign) }
-
-}

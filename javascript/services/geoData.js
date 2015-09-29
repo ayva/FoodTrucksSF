@@ -7,7 +7,9 @@ trackApp.factory('geoDataService',  ['$http', 'trackDataService', function($http
     data: {features: [{place_name: "560 Mission St.",
                       center: ["37.78","-122.41"]
                     }]
-                  }
+                  },
+    center: {longitude: 37.78,
+              latitude: -122.41}
   };
 
   obj.getGeoData = function(address){
@@ -18,10 +20,10 @@ trackApp.factory('geoDataService',  ['$http', 'trackDataService', function($http
           obj.response.data = response.data;
 
           //Making request for info about track in this area
-          var lon = obj.response.data.features[0].center[0];
-          var lat = obj.response.data.features[0].center[1];
+          obj.response.center.longitude = obj.response.data.features[0].center[0];
+          obj.response.center.latitude = obj.response.data.features[0].center[1];
           console.log("calling track Service");
-          obj.getTracks(lon, lat);
+          obj.getTracks(obj.response.center.longitude, obj.response.center.latitude);
 
         }, function errorCallback(response) {
           console.log("No geo info returned");
