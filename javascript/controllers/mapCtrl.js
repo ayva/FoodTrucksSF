@@ -46,10 +46,13 @@ console.log("map controller run");
             });
         });
 
+  // var marker = new Array();
+
 
   
   $scope.updateMarkers = function(){
       $scope.map.center = new L.LatLng(geoDataService.response.center.latitude, geoDataService.response.center.longitude);
+      
      console.log("Updating data", trackDataService.response.data);
       angular.forEach(trackDataService.response.data, function(track){
           
