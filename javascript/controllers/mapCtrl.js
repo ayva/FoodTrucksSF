@@ -1,33 +1,33 @@
-trackApp.controller('mapCtrl',  [ '$scope', '$http',
-                                    'trackDataService',
-                                    'geoDataService',
+truckApp.controller('mapCtrl',  [ '$scope', '$http',
+                                    'truckDataService',
+                                    'geoDataService', 
                                      function( $scope, $http,
-                                            trackDataService,
+                                            truckDataService,
                                             geoDataService
                                             ){
 
 
 console.log("map controller run");
 
-  var popup = L.popup();
-  // var southWest = new L.LatLng(40.60092,-74.173508);
-  // var northEast = new L.LatLng(40.874843,-73.825035);         
-  // var bounds = new L.LatLngBounds(southWest, northEast);
-  // L.Icon.Default.imagePath = './img';
 
- $scope.map = L.map('map', {
-      center: new L.LatLng(geoDataService.response.center.longitude, geoDataService.response.center.latitude),
-      zoom: 13,
-      // maxBounds: bounds,
-      maxZoom: 30,
-      minZoom: 0
-  });
+
+  $scope.map = L.map('map', geoDataService.response.map);
+
+  geoDataService.response.map = $scope.map;
+
+  $scope.markers = new L.LayerGroup().addTo($scope.map);
+
+  geoDataService.response.markers = $scope.markers;
+
+  $scope.cicles = new L.LayerGroup().addTo($scope.map);
+
+  geoDataService.response.cicles = $scope.cicles;
 
   // create the tile layer with correct attribution
   var tilesURL='http://tile.stamen.com/terrain/{z}/{x}/{y}.png';
-  // var tilesAttrib='Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.';
+  
   var tiles = new L.TileLayer(tilesURL, {
-      // attribution: tilesAttrib,
+  
       opacity: 0.7,
       detectRetina: true,
       unloadInvisibleTiles: true,
@@ -36,36 +36,65 @@ console.log("map controller run");
   });
   tiles.addTo($scope.map);
 
-  //Initial map with 560 mission st tracks
 
-  $http.get('locations.json').success(function(data) {
-            // Loop through the 'locations' and place markers on the map
-            angular.forEach(data, function(track){
-                var marker = L.marker([parseFloat(track.latitude).toFixed(4), parseFloat(track.longitude).toFixed(4)]).addTo($scope.map).bindPopup('<p>'+track.applicant+'</p><p>'+track.dayshours+'<br />'+track.fooditems+'</p>').openPopup();
+  $scope.map.on('click', function(e) {
+    
+    geoDataService.response.center.longitude = Number(e.latlng.lng).toFixed(6);
+     geoDataService.response.center.latitude = Number(e.latlng.lat).toFixed(6);
 
-            });
-        });
 
-  // var marker = new Array();
+    
+    truckDataService.getTruckData( Number(e.latlng.lng).toFixed(6), Number(e.latlng.lat).toFixed(6)).then(function(response){
+      
+        truckDataService.response.data = response.data;
+
+        geoDataService.updateMarkers();
+    });
+    
+    
+  });
+
+  
+
+  // $scope.$watch( 'center', function() {
+  //      console.log('hey, center has changed!');
+  //      $scope.map.panTo(geoDataService.response.map.center);
+  //    });
+  //Initial map with 560 mission st trucks
+
+  // $http.get('locations.json').success(function(data) {
+  //           // Loop through the 'locations' and place markers on the map
+  //           angular.forEach(data, function(truck){
+  //               var marker = L.marker([parseFloat(truck.latitude).toFixed(4), parseFloat(truck.longitude).toFixed(4)]).bindPopup('<p>'+truck.applicant+'</p><p>'+truck.dayshours+'<br />'+truck.fooditems+'</p>').addTo($scope.map);
+
+  //           });
+  //       });
+
+ 
+
+  // $scope.addMarkersToMap = function(markers){
+  //   $scope.map.center = new L.LatLng(geoDataService.response.center.latitude, geoDataService.response.center.longitude);
+  //   angular.forEach(markers, function(marker){
+  //         marker.addTo($scope.map);
+  //       });
+  // };
+
+  // $scope.removeMarkersFromMap = function(markers){
+  //   angular.forEach(markers, function(marker){
+  //     marker.removeFrom($scope.map);
+  //   });
+  // };
 
 
   
-  $scope.updateMarkers = function(){
-      $scope.map.center = new L.LatLng(geoDataService.response.center.latitude, geoDataService.response.center.longitude);
-      
-     console.log("Updating data", trackDataService.response.data);
-      angular.forEach(trackDataService.response.data, function(track){
-          
-          var marker = L.marker([track.latitude, track.longitude]).addTo($scope.map).bindPopup('A food track.').openPopup();
 
-      });
-  };
-
-  // $scope.mapData = trackDataService.response.data;
+  // $scope.mapData = truckDataService.response;
 
   // $scope.$watch( 'mapData', function() {
   //      console.log('hey, mapData has changed!');
-  //      $scope.updateMarkers();
+  //      $scope.removeMarkersFromMap(mapDataService.response.markers);
+  //      mapDataService.updateMarkers();
+  //      $scope.addMarkersToMap(mapDataService.response.markers);
   //  });
  // $scope.updateMarkers();
  //  Read in the Location/Events file 
@@ -74,14 +103,14 @@ console.log("map controller run");
  //  });
       
 
-// //trackDataService.getMission();
+// //truckDataService.getMission();
 
 // //Making controller variables update automaticly when service variable changes
 // $scope.geoData = geoDataService.response;
-// $scope.trackData = trackDataService.response;
+// $scope.truckData = truckDataService.response;
 
 
-// $scope.getTracks = function(){
+// $scope.getTrucks = function(){
   
 //   geoDataService.getGeoData($scope.searchInput.address+" San Francisco");
   

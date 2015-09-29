@@ -1,7 +1,7 @@
-var trackApp = angular.module('trackApp', ['ui.router']);
+var truckApp = angular.module('truckApp', ['ui.router']);
 
 
-trackApp.config(function(
+truckApp.config(function(
                           $stateProvider,
                           $urlRouterProvider){
 
@@ -14,7 +14,7 @@ trackApp.config(function(
     views:{
         'search': {
         templateUrl: 'javascript/templates/search.html',
-        controller: 'trackCtrl',
+        controller: 'truckCtrl',
         },
         'map': {
           templateUrl: 'javascript/templates/map.html',
@@ -22,7 +22,7 @@ trackApp.config(function(
         },
         '': {
           templateUrl: 'javascript/templates/results.html',
-          controller: 'trackCtrl',
+          controller: 'truckCtrl',
         }
 
       }
@@ -32,7 +32,7 @@ trackApp.config(function(
 });
 
 //Handling errors helper
-trackApp.run(function($rootScope){
+truckApp.run(function($rootScope){
   $rootScope.$on("$stateChangeError", console.log.bind(console));
 });
 

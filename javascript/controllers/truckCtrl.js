@@ -1,21 +1,21 @@
-trackApp.controller('trackCtrl',  [ '$scope',
-                                    'trackDataService',
+truckApp.controller('truckCtrl',  [ '$scope',
+                                    'truckDataService',
                                     'geoDataService',
                                      function( $scope,
-                                            trackDataService,
+                                            truckDataService,
                                             geoDataService
                                             ){
 
 
-console.log("track controller run");
-trackDataService.getMission();
+console.log("truck controller run");
+//truckDataService.getMission();
 
 //Making controller variables update automaticly when service variable changes
 $scope.geoData = geoDataService.response;
-$scope.trackData = trackDataService.response;
+$scope.truckData = truckDataService.response;
 
 
-$scope.getTracks = function(){
+$scope.getTrucks = function(){
   
   geoDataService.getGeoData($scope.searchInput.address+" San Francisco");
   

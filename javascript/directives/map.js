@@ -1,4 +1,4 @@
-trackApp.directive('map', function($http){
+truckApp.directive('map', function($http){
 return {
     restrict: 'E',
     replace: true,

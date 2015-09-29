@@ -1,4 +1,4 @@
-trackApp.factory('trackDataService', ['$http', function($http){
+truckApp.factory('truckDataService', ['$http', function($http){
 
   var obj={};
 
@@ -17,17 +17,17 @@ trackApp.factory('trackDataService', ['$http', function($http){
           
           
         }, function errorCallback(response) {
-          console.log("No food tracks on Mission");
+          console.log("No food trucks on Mission");
         });
 
   };
 
-  obj.getTrackData = function(lon, lat){
-
+  obj.getTruckData = function(lon, lat){
+      console.log("requesting",lon,lat)
   
       return $http({
         method: 'GET',
-        url: 'https://data.sfgov.org/resource/rqzj-sfat.json?$$app_token=Aq3YmLPKTNnsTzf18ky49Nf3p&$where=within_circle(location,%20'+lat+',%20'+lon+',%20200)&status=APPROVED'
+        url: 'https://data.sfgov.org/resource/rqzj-sfat.json?$$app_token=DnYp4Ddomgi28TQ13Gaajo7vN&$where=within_circle(location,%20'+lat+',%20'+lon+',%20400)&status=APPROVED'
       });
 
       // https://data.sfgov.org/resource/rqzj-sfat.json?$where=within_circle(location,%2037.78,%20-122.41,%201000)&status=APPROVED&$limit=1
