@@ -1,0 +1,19 @@
+
+
+
+<table class="table">
+  <tr>
+    <th>What</th>
+    <th>Where</th>
+    <th>Type of Food</th>
+    <th>Schedule</th>
+  </tr>
+
+  <tr ng-repeat = "info in truckData.data track by $index">
+    <td>{{info.applicant}}</td>
+    <td>{{info.address}}</td>
+    <td>{{info.fooditems}}</td>
+    <td>{{info.dayshours}}</td>
+  </tr>
+</table>
+

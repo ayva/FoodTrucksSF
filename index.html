@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>FoodTrucksSF</title>
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="leaflet.js"></script>
+
+    <!-- Router -->
+    <script src="javascript/services/uiRouter.js"></script>
+</head>
+
+  <body ng-app='truckApp'>
+
+    <!-- search view-->
+    <div class = "col-xs-offset-3 col-xs-5 col-sm-offset-3 col-sm-5 col-md-offset-3 col-md-5 col-lg-5 col-ld-offset-3"  ui-view='search'></div>
+    <!-- map view-->
+    <div ui-view="map"></div>
+
+    
+
+    <div class="container">
+      <div class="row">
+        <div class = "">
+
+          <!-- results view-->
+          <div ui-view>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- modules -->
+  <script src="javascript/app.js"></script>
+  
+
+  <!-- services -->
+  <script src="javascript/services/truckData.js"></script>
+  <script src="javascript/services/geoData.js"></script>
+
+  <!-- controllers -->
+  <script src="javascript/controllers/truckCtrl.js"></script>
+  <script src="javascript/controllers/mapCtrl.js"></script>
+  </body>
+</html>
