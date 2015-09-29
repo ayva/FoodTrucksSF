@@ -3,6 +3,7 @@
   <title>FoodTrucksSF</title>
     <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
     
 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -16,23 +17,12 @@
 
   <body ng-app='truckApp'>
 
-    <h1 class='text-center'>Food trucks in San-Francisco</h1>
+   
 
 
+    <div class = "col-xs-offset-3 col-xs-5 col-sm-offset-3 col-sm-5 col-md-offset-3 col-md-5 col-lg-5 col-ld-offset-3"  ui-view='search'></div>
 
-
-    <div class="container">
-      <div class="row ">
-
-        <!-- stocks view-->
-        <div class = "col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-6 col-lg-6 col-ld-offset-3" ui-view='search'>
-          search not rendered
-        </div>
-        
-      </div>
-    </div>
-
-    <div ui-view="map">Map was not rendered</div>
+    <div ui-view="map"></div>
 
     
 
@@ -42,7 +32,7 @@
 
           <!-- results view-->
           <div ui-view>
-            results not rendered
+            
           </div>
         </div>
       </div>
