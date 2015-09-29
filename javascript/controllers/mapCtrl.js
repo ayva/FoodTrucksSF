@@ -7,8 +7,7 @@ truckApp.controller('mapCtrl',  [ '$scope', '$http', 'coords',
                                             ){
 
 
-console.log("map controller run");
-console.log("coords",coords)
+
   $scope.coords = {
                     longitude: Number(coords.data.loc.split(",")[0]),
                     latitude: Number(coords.data.loc.split(",")[1])
@@ -23,7 +22,8 @@ console.log("coords",coords)
   }
 
   
-  geoDataService.response.geoip = $scope.coords;
+  geoDataService.response.geoip.longitude = $scope.coords.longitude;
+  geoDataService.response.geoip.latitude = $scope.coords.latitude;
 
   $scope.map = L.map('map', geoDataService.response.map);
   geoDataService.response.map = $scope.map;
@@ -67,7 +67,7 @@ console.log("coords",coords)
 
   //Food types filter
 
-  
+
 
 
 }]);
